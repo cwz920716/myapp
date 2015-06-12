@@ -1,0 +1,19 @@
+{
+  "name": "myapp",
+  "version": "0.0.0",
+  "description": "fake server",
+  "main": "index.js",
+  "scripts": {
+    "test": "none yet."
+  },
+  "keywords": [
+    "LB",
+    "bench"
+  ],
+  "author": "wcui",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "express": "~4.12.4",
+    "mysql": "~2.7.0"
+  }
+}
