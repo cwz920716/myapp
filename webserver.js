@@ -86,7 +86,7 @@ app.get('/query', function (req, res, next) {
   //      console.log(req.connection.remoteAddress + ":" + req.connection.remotePort);
 	var recv_time = process.hrtime();
 	if (url.parse(req.url, true).query.qid == -1) {
-		var sleepms = array[i % array.length];
+		var sleepms = Math.random();
 		i = i + 1;	
 		var sleepus = Math.floor(sleepms * 1000);	
 		/* setTimeout(
@@ -106,9 +106,9 @@ app.get('/query', function (req, res, next) {
 	return next();
 });
 
-var fs = require('fs');
-var array = fs.readFileSync('seeds.txt').toString().split("\n");
-var i = 0;
+// var fs = require('fs');
+// var array = fs.readFileSync('seeds.txt').toString().split("\n");
+// var i = 0;
 
 app.use(restify.acceptParser(app.acceptable));
 app.use(restify.dateParser());
