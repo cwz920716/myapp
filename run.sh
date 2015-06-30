@@ -1,10 +1,15 @@
 #! /bin/sh -e
 
-q=100
-n=100
+rps=3100
+c=100
 
-for i in $(seq 1 $q) ; do
-  for j in $(seq 1 $n) ; do
-    nodejs webc.js 1 | grep Delay 
+if [ "$#" -ne 1 ]; then
+  echo "Usage: $0 [DESTDIR]" >&2
+  exit 1
+fi
+
+for i in 100 1200 5000 ; do
+  for j in 1 10 50 100 ; do
+    ./rpsrun.sh $i $j $1
   done
 done

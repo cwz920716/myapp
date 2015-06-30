@@ -12,6 +12,8 @@ def diffTimePoints(a, b):
 	return float(c)/1000.0
 
 file = open(sys.argv[1], "r")
+# sender ip as 2nd arg
+sip = sys.argv[2]
 
 # queue counter: The counter for measuring how many http requests are on the fly
 qcnt = 0
@@ -30,6 +32,8 @@ for lines in file:
 		continue
 	port0 = tuples[3]
 	port1 = tuples[5]
+	ip0 = tuples[2]
+	ip1 = tuples[4]
 	timestr = tuples[0] + ' ' + tuples[1]
 	timepoint = datetime.strptime(timestr, '%Y-%m-%d %H:%M:%S.%f')
 	direction = tuples[6]
@@ -41,8 +45,9 @@ for lines in file:
 		print 'queue\t', linecnt, '\t', qcnt
 	else :
 		sendport = port1
-		print LTPStringMap[sendport], ' ', timestr, ' ', diffTimePoints(timepoint, LTPMap[sendport])
-		qcnt = qcnt - 1
-		print 'queue\t', linecnt, '\t', qcnt
+		if sendport in LTPMap:
+			print LTPStringMap[sendport], ' ', timestr, ' ', diffTimePoints(timepoint, LTPMap[sendport])
+			qcnt = qcnt - 1
+			print 'queue\t', linecnt, '\t', qcnt
 
 file.close()
